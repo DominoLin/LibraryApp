@@ -3,6 +3,7 @@ package com.swufe.library;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,6 +30,7 @@ import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    String TAG = "TestLogin";
     EditText edtTxt_login_account, edtTxt_login_pwd;
     Button btn_login_submit, btn_login_forget, btn_login_register;
 
@@ -36,7 +40,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //判断是否登录
-
+        if(LogManager.getInstance(this).isLoggedIn()){
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+            return;
+        }
 
 
         edtTxt_login_account = findViewById(R.id.edtTxt_login_account);
@@ -44,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         btn_login_submit = findViewById(R.id.btn_login_submit);
         btn_login_forget = findViewById(R.id.btn_login_forget);
         btn_login_register = findViewById(R.id.btn_login_register);
-
-
 
     }
 
@@ -97,9 +103,19 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Looper.prepare();
                     Toast.makeText(getApplicationContext(), "登录成功",Toast.LENGTH_LONG).show();
+
+                    String responseData = response.body().string();
+                    Log.i(TAG, "json: "+responseData);
+                    Gson gson = new Gson();
+                    User user = gson.fromJson(responseData,User.class);
+
+                    LogManager.getInstance(getApplicationContext()).userLogin(user);
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    Log.i(TAG, "onResponse: "+user.getUsername());
+                    Log.i(TAG, "onResponse: "+user.getAccount());
+                    Log.i(TAG, "onResponse: "+user.getPassword());
                     Looper.loop();
-                    String json = response.body().string();
-                    Log.i("TestLogin", "json: "+json);
                 }
             }
         });

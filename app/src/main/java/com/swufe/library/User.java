@@ -1,16 +1,16 @@
 package com.swufe.library;
 
 public class User {
-    private int id;
+    private int account;
     private String username;
     private String password;
 
-    public int getId() {
-        return id;
+    public int getAccount() {
+        return account;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAccount(int id) {
+        this.account = account;
     }
 
     public String getUsername() {
