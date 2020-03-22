@@ -1,11 +1,12 @@
-package com.swufe.library;
+package com.swufe.library.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
+
+import com.swufe.library.R;
 
 public class StarterActivity extends AppCompatActivity {
 
@@ -19,10 +20,10 @@ public class StarterActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try{
-                    sleep(1500);
+                    sleep(1000);
                     Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                     startActivity(intent);
-                    finish();
+                    finish();//结束当前Activity
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

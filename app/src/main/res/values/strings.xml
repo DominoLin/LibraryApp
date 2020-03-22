@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Library</string>
+    <string name="login_account">Student ID</string>
+    <string name="login_password">Password</string>
+    <string name="login_login">Login</string>
+    <string name="login_forget">Forget password?</string>
+    <string name="login_noAccount">Don\'t hava an account?</string>
+    <string name="login_register">Sign up</string>
+    <string name="register_account">Student ID</string>
+    <string name="register_telephone">Telephone</string>
+    <string name="register_username">Username</string>
+    <string name="register_password">Password</string>
+    <string name="register_passwordConfirm">Confirm Password</string>
+    <string name="register_signup">Sign up</string>
+    <string name="forget_telephone">Telephone</string>
+    <string name="forget_account">Account</string>
+    <string name="forget_password">Password</string>
+    <string name="forget_passwordConfirm">Confirm Password</string>
+    <string name="menu_logout">Log out</string>
+
+
 </resources>

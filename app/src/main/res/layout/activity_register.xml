@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:paddingHorizontal="32dp">
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_register_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="48dp"
@@ -20,44 +20,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/register_account"
+        android:inputType="number"
         android:padding="10dp"
-        android:textSize="18sp"
-        android:hint="Account"
-        android:inputType="textPersonName"
-         />
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edtTxt_register_telephone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/register_telephone"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/edtTxt_register_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="18sp"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="@string/register_username"
         android:inputType="textPersonName"
-        android:hint="Username" />
+        android:padding="10dp"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/edtTxt_register_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:hint="Password"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:hint="@string/register_password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/edtTxt_register_pwdConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:hint="Confirm password"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:hint="@string/register_passwordConfirm"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btn_register_register"
@@ -66,7 +76,7 @@
         android:layout_marginTop="24dp"
         android:background="@color/colorPrimary"
         android:onClick="register"
-        android:text="注册"
+        android:text="@string/register_signup"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 

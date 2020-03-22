@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    tools:context=".LoginActivity">
+    android:orientation="vertical"
+    android:paddingHorizontal="32dp"
+    tools:context=".activity.LoginActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_login_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="48dp"
@@ -24,7 +24,7 @@
         android:padding="10dp"
         android:textSize="20sp"
         android:ems="10"
-        android:hint="请输入用户名"
+        android:hint="@string/login_account"
         android:inputType="number" />
 
     <EditText
@@ -35,7 +35,7 @@
         android:textSize="20sp"
         android:padding="10dp"
         android:ems="10"
-        android:hint="请输入密码"
+        android:hint="@string/login_password"
         android:inputType="textPassword" />
 
     <Button
@@ -47,7 +47,7 @@
         android:background="@color/colorPrimary"
         android:textColor="#FFFFFF"
         android:onClick="login"
-        android:text="登录" />
+        android:text="@string/login_login" />
 
     <Button
         android:id="@+id/btn_login_forget"
@@ -58,7 +58,7 @@
         android:minHeight="5dp"
         android:onClick="forget"
         android:padding="10dp"
-        android:text="忘记密码"
+        android:text="@string/login_forget"
         android:textAllCaps="false"
         android:textSize="14sp" />
 
@@ -69,9 +69,9 @@
         android:layout_marginTop="16dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="没有账户？"
+            android:text="@string/login_noAccount"
             android:textSize="16dp"/>
 
         <Button
@@ -81,7 +81,7 @@
             android:background="#00000000"
             android:minWidth="50dp"
             android:onClick="register"
-            android:text="注册"
+            android:text="@string/login_register"
             android:textAllCaps="false"
             android:textSize="16sp" />
 

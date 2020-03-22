@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Library</string>
+    <string name="login_account">请输入学号</string>
+    <string name="login_password">请输入密码</string>
+    <string name="login_login">登录</string>
+    <string name="login_forget">忘记密码</string>
+    <string name="login_noAccount">没有账户？</string>
+    <string name="login_register">注册</string>
+    <string name="register_account">请输入学号</string>
+    <string name="register_telephone">请输入电话号码</string>
+    <string name="register_username">请输入姓名</string>
+    <string name="register_password">请输入密码</string>
+    <string name="register_passwordConfirm">请重复密码</string>
+    <string name="register_signup">注册</string>
+    <string name="forget_telephone">请输入电话号码</string>
+    <string name="forget_account">请输入学号</string>
+    <string name="forget_password">请输入密码</string>
+    <string name="forget_passwordConfirm">请重复密码</string>
+    <string name="menu_logout">退出登录</string>
+</resources>

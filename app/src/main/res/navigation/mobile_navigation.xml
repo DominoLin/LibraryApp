@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.swufe.library.fragment.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_user"
+        android:name="com.swufe.library.fragment.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user" />
+
+    <fragment
+        android:id="@+id/nav_borrow"
+        android:name="com.swufe.library.fragment.BorrowFragment"
+        android:label="借阅历史"
+        tools:layout="@layout/fragment_borrow"/>
+
+
+
+</navigation>

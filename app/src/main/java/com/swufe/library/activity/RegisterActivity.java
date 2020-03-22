@@ -1,4 +1,4 @@
-package com.swufe.library;
+package com.swufe.library.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.swufe.library.R;
+import com.swufe.library.bean.Reader;
+import com.swufe.library.bean.Result;
+import com.swufe.library.util.URLs;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,7 +34,7 @@ import okhttp3.Response;
 public class RegisterActivity extends AppCompatActivity {
 
     String TAG = "TestRegister";
-    EditText edtTxt_register_account, edtTxt_register_username,  edtTxt_register_pwd, edtTxt_register_pwdConfirm;
+    EditText edtTxt_register_account, edtTxt_register_telephone, edtTxt_register_username,  edtTxt_register_pwd, edtTxt_register_pwdConfirm;
     Button btn_register_register;
 
     @Override
@@ -36,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         edtTxt_register_account = findViewById(R.id.edtTxt_register_account);
+        edtTxt_register_telephone = findViewById(R.id.edtTxt_register_telephone);
         edtTxt_register_username = findViewById(R.id.edtTxt_register_username);
         edtTxt_register_pwd = findViewById(R.id.edtTxt_register_pwd);
         edtTxt_register_pwdConfirm = findViewById(R.id.edtTxt_register_pwdConfirm);
@@ -45,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void register(View view){
         final String account = edtTxt_register_account.getText().toString().trim();
+        final String telephone = edtTxt_register_telephone.getText().toString().trim();
         final String username = edtTxt_register_username.getText().toString().trim();
         final String pwd = edtTxt_register_pwd.getText().toString().trim();
         final String pwdConfirm = edtTxt_register_pwdConfirm.getText().toString().trim();
@@ -53,6 +62,10 @@ public class RegisterActivity extends AppCompatActivity {
             edtTxt_register_account.setError("Enter account");
             edtTxt_register_account.requestFocus();
             return;
+        }
+
+        if(TextUtils.isEmpty(telephone)){
+            edtTxt_register_telephone.setError("电话号码不能为空");
         }
 
         if(TextUtils.isEmpty(username)){
@@ -80,8 +93,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         OkHttpClient client = new OkHttpClient();
+
         RequestBody body = new FormBody.Builder()
                 .add("account",account)
+                .add("telephone",telephone)
                 .add("username",username)
                 .add("password",pwd)
                 .build();
@@ -94,18 +109,24 @@ public class RegisterActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Looper.prepare();
-                Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_LONG).show();
-                Looper.loop();
+
             }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                Looper.prepare();
-                Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_LONG).show();
                 String responseData = response.body().string();
-                Log.i(TAG, "responseData:"+responseData);
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                //                Log.i(TAG, "responseData:"+responseData);
+                Gson gson = new Gson();
+                Result<Reader> result = new Result<>();
+                result = gson.fromJson(responseData, new TypeToken<Result<Reader>>(){}.getType());
+                Looper.prepare();
+                if(result.code == 200){
+                    Toast.makeText(getApplicationContext(), result.message, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                    finish();
+                }else {
+                    Toast.makeText(RegisterActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                }
                 Looper.loop();
             }
         });

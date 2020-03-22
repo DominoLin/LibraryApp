@@ -1,13 +1,19 @@
 package com.swufe.library;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+
+import com.swufe.library.activity.LoginActivity;
+import com.swufe.library.bean.Reader;
 
 public class LogManager {
 
-    private static final String SHARED_PREFERFEMCES_NAME = "logSharedPreferences";
+    public static final String SHARED_PREFERFEMCES_NAME = "logSharedPreferences";
     private static final String ACCOUNT = "account";
+    private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
+    private static final String TELEPHONE = "telephone";
 
     private static LogManager mInstance;
     private static Context mContext;
@@ -23,18 +29,28 @@ public class LogManager {
         return mInstance;
     }
 
-    public void userLogin(User user){
+    public void readerLogin(Reader reader){
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERFEMCES_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(ACCOUNT, user.getAccount());
-        editor.putString(PASSWORD, user.getPassword());
+        editor.putString(ACCOUNT, String.valueOf(reader.getAccount()));
+        editor.putString(USERNAME, reader.getUsername());
+        editor.putString(PASSWORD, reader.getPassword());
+        editor.putString(TELEPHONE,reader.getTelephone());
         editor.apply();
 
     }
 
     public Boolean isLoggedIn(){
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERFEMCES_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(PASSWORD,null) != null;
+        return sharedPreferences.getString(ACCOUNT,null) != null;
+    }
+
+    public void logout(){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREFERFEMCES_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+        mContext.startActivity(new Intent(mContext, LoginActivity.class));
     }
 
 }
