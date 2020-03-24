@@ -6,6 +6,24 @@ public class Reader {
     private String username;
     private String password;
     private String telephone;
+    private String college;
+    private String major;
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
     public int getAccount() {
         return account;

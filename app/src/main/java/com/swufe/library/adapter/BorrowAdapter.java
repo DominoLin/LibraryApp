@@ -29,8 +29,17 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.ViewHolder
 
     public BorrowAdapter(List<BorrowItem> borrowItemList){
         this.borrowItemList = borrowItemList;
-
     }
+
+
+
+    private BookAdapter.OnItemLongClickListener longClickListener;
+
+    public void setOnItemLongClickListener(BookAdapter.OnItemLongClickListener longClickListener) {
+        this.longClickListener = longClickListener;
+    }
+
+
 
     @NonNull
     @Override
@@ -41,24 +50,29 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         BorrowItem item = borrowItemList.get(position);
         holder.deadline.setText(item.getDeadline());
         holder.book.setText(item.getBookName());
         holder.borrow.setText(item.getBorrow_date());
         holder.back.setText(item.getBack_date());
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (longClickListener != null) {
+                    longClickListener.onClick(position);
+
+                }
+                return true;
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return borrowItemList.size();
     }
-
-
-
-
-
-
 
 
 }

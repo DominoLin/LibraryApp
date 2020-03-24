@@ -43,29 +43,29 @@ public class ForgetActivity extends AppCompatActivity {
         edtTxt_forget_pwdConfirm = findViewById(R.id.edtTxt_forget_passwordConfirm);
     }
 
-    public void findPwd(View view){
+    public void resetPwd(View view){
         String account = edtTxt_forget_account.getText().toString().trim();
         String telephone = edtTxt_forget_telephone.getText().toString().trim();
         String pwd = edtTxt_forget_pwd.getText().toString().trim();
         String pwdConfirm = edtTxt_forget_pwdConfirm.getText().toString().trim();
 
         if(TextUtils.isEmpty(account)){
-            edtTxt_forget_account.setError("Enter your username");
+            edtTxt_forget_account.setError("学号不能为空");
             edtTxt_forget_account.requestFocus();
             return;
         }
-        if(TextUtils.isEmpty(account)) {
-            edtTxt_forget_telephone.setError("Enter your username");
+        if(TextUtils.isEmpty(telephone)) {
+            edtTxt_forget_telephone.setError("电话号码不能为空");
             edtTxt_forget_telephone.requestFocus();
             return;
         }
-        if(TextUtils.isEmpty(account)) {
-            edtTxt_forget_pwd.setError("Enter your username");
+        if(TextUtils.isEmpty(pwd)) {
+            edtTxt_forget_pwd.setError("密码不能为空");
             edtTxt_forget_pwd.requestFocus();
             return;
         }
-        if(TextUtils.isEmpty(account)) {
-            edtTxt_forget_pwdConfirm.setError("Enter your username");
+        if(TextUtils.isEmpty(pwdConfirm)) {
+            edtTxt_forget_pwdConfirm.setError("密码不能为空");
             edtTxt_forget_pwdConfirm.requestFocus();
             return;
         }
@@ -79,7 +79,7 @@ public class ForgetActivity extends AppCompatActivity {
                 .add("telephone",telephone)
                 .add("password",pwd)
                 .build();
-        HttpUtil.sendOkHttpRequest(URLs.findPwd, body, new Callback() {
+        HttpUtil.sendOkHttpRequest(URLs.resetPwd, body, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
 
@@ -98,7 +98,13 @@ public class ForgetActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(ForgetActivity.this, result.message, Toast.LENGTH_LONG).show();
                 }
+                Looper.loop();
             }
         });
+    }
+
+    public void cancel(View view){
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 }

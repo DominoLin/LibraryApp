@@ -9,17 +9,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/img_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginBottom="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@mipmap/ic_launcher_round" />
 
         <LinearLayout
             android:layout_marginTop="24dp"
@@ -41,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="经济信息工程学院"
+                tools:text="经济信息工程学院"
                 android:gravity="end"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -66,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="计算机科学与技术"
+                tools:text="计算机科学与技术"
                 android:gravity="end"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -92,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="41610002"
+                tools:text="41610002"
                 android:gravity="end"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -119,32 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="肖林"
-                android:gravity="end"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="24dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="性别"
-                android:textSize="20sp"
-                android:textColor="#000" />
-
-            <TextView
-                android:id="@+id/tv_user_sex"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="男"
+                tools:text="肖林"
                 android:gravity="end"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -170,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-
+                tools:text="17760472085"
                 android:gravity="end"
                 android:textSize="20sp" />
         </LinearLayout>

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,61 +33,77 @@ import okhttp3.Response;
 public class RegisterActivity extends AppCompatActivity {
 
     String TAG = "TestRegister";
-    EditText edtTxt_register_account, edtTxt_register_telephone, edtTxt_register_username,  edtTxt_register_pwd, edtTxt_register_pwdConfirm;
-    Button btn_register_register;
+    EditText account, telephone, username, pwd, pwdConfirm, college, major;
+    Button register,cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        edtTxt_register_account = findViewById(R.id.edtTxt_register_account);
-        edtTxt_register_telephone = findViewById(R.id.edtTxt_register_telephone);
-        edtTxt_register_username = findViewById(R.id.edtTxt_register_username);
-        edtTxt_register_pwd = findViewById(R.id.edtTxt_register_pwd);
-        edtTxt_register_pwdConfirm = findViewById(R.id.edtTxt_register_pwdConfirm);
-        btn_register_register = findViewById(R.id.btn_register_register);
+        account = findViewById(R.id.edtTxt_register_account);
+        telephone = findViewById(R.id.edtTxt_register_telephone);
+        username = findViewById(R.id.edtTxt_register_username);
+        pwd = findViewById(R.id.edtTxt_register_pwd);
+        pwdConfirm = findViewById(R.id.edtTxt_register_pwdConfirm);
+        college = findViewById(R.id.edtTxt_register_college);
+        major = findViewById(R.id.edtTxt_register_major);
+        register = findViewById(R.id.btn_register_register);
+        cancel = findViewById(R.id.btn_register_cancel);
 
     }
 
     public void register(View view){
-        final String account = edtTxt_register_account.getText().toString().trim();
-        final String telephone = edtTxt_register_telephone.getText().toString().trim();
-        final String username = edtTxt_register_username.getText().toString().trim();
-        final String pwd = edtTxt_register_pwd.getText().toString().trim();
-        final String pwdConfirm = edtTxt_register_pwdConfirm.getText().toString().trim();
+        final String account = this.account.getText().toString().trim();
+        final String telephone = this.telephone.getText().toString().trim();
+        final String username = this.username.getText().toString().trim();
+        final String pwd = this.pwd.getText().toString().trim();
+        final String pwdConfirm = this.pwdConfirm.getText().toString().trim();
+        final String college = this.college.getText().toString().trim();
+        final String major = this.major.getText().toString().trim();
 
+
+        if(TextUtils.isEmpty(college)){
+            this.college.setError("学院不能为空");
+            this.college.requestFocus();
+            return;
+        }
+
+        if(TextUtils.isEmpty(major)){
+            this.major.setError("专业不能为空");
+            this.major.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(username)){
+            this.username.setError("姓名不能为空");
+            this.username.requestFocus();
+            return;
+        }
         if(TextUtils.isEmpty(account)){
-            edtTxt_register_account.setError("Enter account");
-            edtTxt_register_account.requestFocus();
+            this.account.setError("学号不能为空");
+            this.account.requestFocus();
             return;
         }
 
         if(TextUtils.isEmpty(telephone)){
-            edtTxt_register_telephone.setError("电话号码不能为空");
-        }
-
-        if(TextUtils.isEmpty(username)){
-            edtTxt_register_username.setError("Enter username");
-            edtTxt_register_username.requestFocus();
-            return;
+            this.telephone.setError("电话号码不能为空");
         }
 
         if(TextUtils.isEmpty(pwd)){
-            edtTxt_register_pwd.setError("Enter password");
-            edtTxt_register_pwd.requestFocus();
+            this.pwd.setError("密码不能为空");
+            this.pwd.requestFocus();
             return;
         }
 
         if(TextUtils.isEmpty(pwdConfirm)){
-            edtTxt_register_pwdConfirm.setError("Enter password again");
-            edtTxt_register_pwdConfirm.requestFocus();
+            this.pwdConfirm.setError("密码不能为空");
+            this.pwdConfirm.requestFocus();
             return;
         }
 
         if(!pwd.equals(pwdConfirm)){
-            edtTxt_register_pwdConfirm.setError("Passwords do not match");
-            edtTxt_register_pwdConfirm.requestFocus();
+            this.pwdConfirm.setError("两次输入密码不一致");
+            this.pwdConfirm.requestFocus();
             return;
         }
 
@@ -99,6 +114,8 @@ public class RegisterActivity extends AppCompatActivity {
                 .add("telephone",telephone)
                 .add("username",username)
                 .add("password",pwd)
+                .add("college",college)
+                .add("major",major)
                 .build();
 
         Request request = new Request.Builder()
@@ -115,10 +132,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 String responseData = response.body().string();
-                //                Log.i(TAG, "responseData:"+responseData);
                 Gson gson = new Gson();
-                Result<Reader> result = new Result<>();
-                result = gson.fromJson(responseData, new TypeToken<Result<Reader>>(){}.getType());
+                Result<Reader> result = gson.fromJson(responseData, new TypeToken<Result<Reader>>(){}.getType());
                 Looper.prepare();
                 if(result.code == 200){
                     Toast.makeText(getApplicationContext(), result.message, Toast.LENGTH_LONG).show();
@@ -131,4 +146,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void cancel(View view){
+        startActivity(new Intent(this,LoginActivity.class));
+        finish();
+    }
+
 }

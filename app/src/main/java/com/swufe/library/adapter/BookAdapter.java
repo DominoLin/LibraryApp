@@ -37,19 +37,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public interface OnItemClickListener{
         void onClick(int positon);
     }
-
-    private OnItemClickListener listener;
-
-    public void setOnItemClickListener(OnItemClickListener listener){
-        this.listener = listener;
-    }
-
     public interface OnItemLongClickListener {
         void onClick(int position);
     }
 
-    private OnItemLongClickListener longClickListener;
+    private OnItemClickListener listener;
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
 
+    private OnItemLongClickListener longClickListener;
     public void setOnItemLongClickListener(OnItemLongClickListener longClickListener) {
         this.longClickListener = longClickListener;
     }
@@ -94,6 +91,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     @Override
     public int getItemCount(){
+        if(mBookList == null){
+            return 0;
+        }
         return mBookList.size();
     }
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 public class Lend {
     private int account;
     private int book_id;
+    private int lend_id;
     private String book_name;
 
 
@@ -50,5 +51,13 @@ public class Lend {
 
     public void setBack_date(String back_date) {
         this.back_date = back_date;
+    }
+
+    public int getLend_id() {
+        return lend_id;
+    }
+
+    public void setLend_id(int lend_id) {
+        this.lend_id = lend_id;
     }
 }

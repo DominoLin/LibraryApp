@@ -8,15 +8,13 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.swufe.library.fragment.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home">
-    </fragment>
-
+        android:label="图书推荐"
+        tools:layout="@layout/fragment_home"/>
 
     <fragment
         android:id="@+id/nav_user"
         android:name="com.swufe.library.fragment.UserFragment"
-        android:label="User"
+        android:label="用户信息"
         tools:layout="@layout/fragment_user" />
 
     <fragment
@@ -24,6 +22,18 @@
         android:name="com.swufe.library.fragment.BorrowFragment"
         android:label="借阅历史"
         tools:layout="@layout/fragment_borrow"/>
+
+    <fragment
+        android:id="@+id/nav_collection"
+        android:name="com.swufe.library.fragment.CollectionFragment"
+        android:label="我的收藏"
+        tools:layout="@layout/fragment_collection">
+        <action
+            android:id="@+id/action_nav_collection_self"
+            app:destination="@id/nav_collection" />
+    </fragment>
+
+
 
 
 

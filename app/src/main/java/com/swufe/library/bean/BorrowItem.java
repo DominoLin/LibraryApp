@@ -2,12 +2,14 @@ package com.swufe.library.bean;
 
 public class BorrowItem {
     String deadline, bookName, borrow_date, back_date;
+    int lend_id;
 
-    public BorrowItem(String deadline, String bookName, String borrow_date, String back_date) {
+    public BorrowItem(String deadline, String bookName, String borrow_date, String back_date, int lend_id) {
         this.deadline = deadline;
         this.bookName = bookName;
         this.borrow_date = borrow_date;
         this.back_date = back_date;
+        this.lend_id = lend_id;
     }
 
     public String getDeadline() {
@@ -40,5 +42,13 @@ public class BorrowItem {
 
     public void setBack_date(String back_date) {
         this.back_date = back_date;
+    }
+
+    public int getLend_id() {
+        return lend_id;
+    }
+
+    public void setLend_id(int lend_id) {
+        this.lend_id = lend_id;
     }
 }

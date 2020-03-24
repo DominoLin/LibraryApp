@@ -17,6 +17,14 @@
     <string name="forget_password">Password</string>
     <string name="forget_passwordConfirm">Confirm Password</string>
     <string name="menu_logout">Log out</string>
+    <string name="register_sex">Sex</string>
+    <string name="register_college">College</string>
+    <string name="register_major">Major</string>
+    <string name="register_cancel">Cancel</string>
+    <string name="forget_reset">Reset</string>
+    <string name="forget_cancel">Cancel</string>
+    <string name="forget_title">Reset Password</string>
+    <string name="home_search">Please input book name</string>
 
 
 </resources>

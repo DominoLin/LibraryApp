@@ -16,23 +16,23 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <EditText
-        android:id="@+id/edtTxt_register_account"
+        android:id="@+id/edtTxt_register_college"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:ems="10"
-        android:hint="@string/register_account"
-        android:inputType="number"
-        android:padding="10dp"
-        android:textSize="18sp" />
+        android:hint="@string/register_college"
+        android:inputType="text"
+        android:padding="10dp" />
 
     <EditText
-        android:id="@+id/edtTxt_register_telephone"
+        android:id="@+id/edtTxt_register_major"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:hint="@string/register_telephone"
-        android:inputType="phone"
+        android:hint="@string/register_major"
+        android:inputType="text"
         android:padding="10dp"
         android:textSize="18sp" />
 
@@ -40,10 +40,34 @@
         android:id="@+id/edtTxt_register_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="@string/register_username"
         android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textSize="18sp" />
+
+
+    <EditText
+        android:id="@+id/edtTxt_register_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="@string/register_account"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textSize="18sp" />
+
+
+    <EditText
+        android:id="@+id/edtTxt_register_telephone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="@string/register_telephone"
+        android:inputType="phone"
         android:padding="10dp"
         android:textSize="18sp" />
 
@@ -51,7 +75,7 @@
         android:id="@+id/edtTxt_register_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="@string/register_password"
         android:inputType="textPassword"
@@ -62,12 +86,13 @@
         android:id="@+id/edtTxt_register_pwdConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="@string/register_passwordConfirm"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textSize="18sp" />
+
 
     <Button
         android:id="@+id/btn_register_register"
@@ -78,8 +103,15 @@
         android:onClick="register"
         android:text="@string/register_signup"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/btn_register_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:onClick="cancel"
+        android:text="@string/register_cancel" />
 
 
 </LinearLayout>

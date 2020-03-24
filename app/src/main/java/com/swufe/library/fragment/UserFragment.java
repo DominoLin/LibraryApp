@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.swufe.library.LogManager;
 import com.swufe.library.R;
+import com.swufe.library.bean.Reader;
 import com.swufe.library.bean.ReaderInfo;
 import com.swufe.library.bean.Result;
 import com.swufe.library.util.HttpUtil;
@@ -35,8 +37,9 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class UserFragment extends Fragment{
-    TextView tv_user_college, tv_user_major, tv_user_account, tv_user_name, tv_user_sex,tv_user_telephone;
-    String college,major,account,name,sex,telephone;
+    TextView tv_user_college, tv_user_major, tv_user_account, tv_user_name, tv_user_telephone;
+    String college,major,account,name,telephone;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class UserFragment extends Fragment{
         tv_user_major = view.findViewById(R.id.tv_user_major);
         tv_user_account = view.findViewById(R.id.tv_user_account);
         tv_user_name = view.findViewById(R.id.tv_user_name);
-        tv_user_sex = view.findViewById(R.id.tv_user_sex);
+
         tv_user_telephone = view.findViewById(R.id.tv_user_telephone);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(LogManager.SHARED_PREFERFEMCES_NAME, Activity.MODE_PRIVATE);
@@ -57,18 +60,24 @@ public class UserFragment extends Fragment{
         tv_user_name.setText(name);
         tv_user_telephone.setText(telephone);
 
+        tv_user_telephone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_user_telephone.setEnabled(true);
+            }
+        });
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getUserInfo(account);
+        getReaderInfo(account);
 
 
     }
 
-    private void getUserInfo(String account) {
+    private void getReaderInfo(String account) {
         RequestBody body = new FormBody.Builder()
                 .add("account",account)
                 .build();
@@ -82,15 +91,14 @@ public class UserFragment extends Fragment{
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 String responseData = response.body().string();
                 Gson gson = new Gson();
-                Result<ReaderInfo> result = gson.fromJson(responseData, new TypeToken<Result<ReaderInfo>>(){}.getType());
+                Result<Reader> result = gson.fromJson(responseData, new TypeToken<Result<Reader>>(){}.getType());
                 if(result.getCode() == 200){
-                    ReaderInfo readerInfo = result.getData();
-                    sex = readerInfo.getSex();
-                    college = readerInfo.getCollege();
-                    major = readerInfo.getMajor();
+                    Reader reader = result.getData();
+                    college = reader.getCollege();
+                    major = reader.getMajor();
                     tv_user_college.setText(college);
                     tv_user_major.setText(major);
-                    tv_user_sex.setText(sex);
+
                 }else {
                     Looper.prepare();
                     Toast.makeText(getActivity(), result.getMessage(), Toast.LENGTH_SHORT).show();

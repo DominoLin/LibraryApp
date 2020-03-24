@@ -78,15 +78,16 @@ public class LoginActivity extends AppCompatActivity {
         String pwd = edtTxt_login_pwd.getText().toString();
         //判断是否为空
         if(TextUtils.isEmpty(account)){
-            edtTxt_login_account.setError("Enter your username");
+            edtTxt_login_account.setError("请输入用户名");
             edtTxt_login_account.requestFocus();
             return;
         }
         if(TextUtils.isEmpty(pwd)){
-            edtTxt_login_pwd.setError("Enter your password");
+            edtTxt_login_pwd.setError("请输入密码");
             edtTxt_login_pwd.requestFocus();
             return;
         }
+
         RequestBody body = new FormBody.Builder()
                 .add("account",account)
                 .add("password",pwd)

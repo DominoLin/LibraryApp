@@ -38,22 +38,22 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView tv_header_account, tv_header_username;
     private RecyclerView recyclerView;
-    private FloatingActionButton fab;
+//    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "查找图书", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                startActivity(new Intent(getApplicationContext(),SearchActivity.class));
-            }
-        });
+//        fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Snackbar.make(v, "查找图书", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                startActivity(new Intent(getApplicationContext(),SearchActivity.class));
+//            }
+//        });
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         AppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_user, R.id.nav_borrow)
+                R.id.nav_home, R.id.nav_user, R.id.nav_borrow, R.id.nav_collection)
                 .setDrawerLayout(drawerLayout)
                 .build();
         navigationView = findViewById(R.id.nav_view);

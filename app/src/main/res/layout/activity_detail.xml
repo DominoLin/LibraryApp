@@ -201,17 +201,20 @@
                 android:layout_marginTop="20dp"
                 android:paddingHorizontal="20dp"
                 android:orientation="vertical">
+
                 <Button
 
                     android:id="@+id/btn_detail_collect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="collect"
                     android:text="收藏" />
 
                 <Button
                     android:id="@+id/btn_detail_borrow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="borrow"
                     android:text="借阅" />
 
 

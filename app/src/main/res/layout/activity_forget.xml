@@ -7,6 +7,16 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_forget_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="36sp"
+        android:layout_marginBottom="200dp"
+        android:text="@string/forget_title" />
+
     <EditText
         android:id="@+id/edtTxt_forget_account"
         android:layout_width="match_parent"
@@ -58,14 +68,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:onClick="findPwd"
-        android:text="修改" />
+        android:onClick="resetPwd"
+        android:text="@string/forget_reset" />
 
     <Button
         android:id="@+id/btn_forget_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="取消" />
+        android:onClick="cancel"
+        android:text="@string/forget_cancel" />
 
 
 </LinearLayout>
