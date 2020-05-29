@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.DetailActivity">
     <com.google.android.material.appbar.AppBarLayout
+
         android:id="@+id/detail_app_bar"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -32,6 +33,8 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -39,11 +42,20 @@
         android:id="@+id/detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/ic_background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_detail"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
 
             <LinearLayout
 
@@ -98,6 +110,8 @@
 
             </LinearLayout>
 
+
+
             <LinearLayout
 
                 android:paddingHorizontal="20dp"
@@ -121,6 +135,58 @@
                     android:gravity="end"
                     android:layout_weight="1"
                     tools:text="这里是出版时间" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:paddingHorizontal="20dp"
+                android:layout_marginVertical="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_weight="5"
+                    android:text="ISBN" />
+
+                <TextView
+                    android:id="@+id/tv_detail_ISBN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    tools:text="这里是ISBN" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:paddingHorizontal="20dp"
+                android:layout_marginVertical="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_weight="5"
+                    android:text="语言" />
+
+                <TextView
+                    android:id="@+id/tv_detail_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    tools:text="这里是语言" />
 
             </LinearLayout>
 

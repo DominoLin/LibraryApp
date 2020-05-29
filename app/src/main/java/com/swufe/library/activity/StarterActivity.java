@@ -20,7 +20,7 @@ public class StarterActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try{
-                    sleep(1000);
+                    sleep(1500);
                     Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                     startActivity(intent);
                     finish();//结束当前Activity

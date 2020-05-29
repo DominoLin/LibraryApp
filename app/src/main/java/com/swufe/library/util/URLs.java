@@ -1,7 +1,8 @@
 package com.swufe.library.util;
 
 public class URLs {
-    private static final String server = "http://192.168.0.152:8080/api/";
+    private static final String IP = "http://10.31.152.181:8080/";
+    private static final String server = IP+"api/";
 
     //登录
     public static final String login = server+"login";
@@ -16,4 +17,5 @@ public class URLs {
     public static final String getCollection = server+"getCollection";
     public static final String deleteCollection = server+"deleteCollection";
     public static final String addCollection = server+"addCollection";
+    public static final String picture = IP+"static/book/";
 }

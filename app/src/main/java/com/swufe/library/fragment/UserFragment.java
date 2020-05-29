@@ -92,7 +92,9 @@ public class UserFragment extends Fragment{
                 String responseData = response.body().string();
                 Gson gson = new Gson();
                 Result<Reader> result = gson.fromJson(responseData, new TypeToken<Result<Reader>>(){}.getType());
+
                 if(result.getCode() == 200){
+                    Looper.prepare();
                     Reader reader = result.getData();
                     college = reader.getCollege();
                     major = reader.getMajor();
@@ -104,6 +106,7 @@ public class UserFragment extends Fragment{
                     Toast.makeText(getActivity(), result.getMessage(), Toast.LENGTH_SHORT).show();
                     Looper.loop();
                 }
+                Looper.loop();
             }
         });
     }

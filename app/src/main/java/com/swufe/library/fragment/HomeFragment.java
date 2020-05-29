@@ -182,6 +182,7 @@ public class HomeFragment extends Fragment implements Runnable{
             String responseData = response.body().string();
             books= parseJsonWithGson(responseData);
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }

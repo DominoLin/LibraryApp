@@ -136,8 +136,14 @@ public class BorrowFragment extends Fragment implements Runnable{
         Result<List<Lend>> result = gson.fromJson(responseData,new TypeToken<Result<List<Lend>>>(){}.getType());
         List<Lend> lendList = result.getData();
         for(Lend lend:lendList){
-            BorrowItem item = new BorrowItem(getDays(lend.getLend_date()),lend.getBook_name(),lend.getLend_date(),lend.getBack_date(),lend.getLend_id());
-            borrowItems.add(item);
+            Log.i("TAG", "getBorrowItemList: "+lend.getBack_date());
+            if(lend.getBack_date()!=null) {
+                BorrowItem item = new BorrowItem("已还", lend.getBook_name(), lend.getLend_date(), lend.getBack_date(), lend.getLend_id());
+                borrowItems.add(item);
+            } else{
+                BorrowItem item = new BorrowItem(getDays(lend.getLend_date()), lend.getBook_name(), lend.getLend_date(), lend.getBack_date(), lend.getLend_id());
+                borrowItems.add(item);
+            }
         }
 
 
@@ -147,18 +153,24 @@ public class BorrowFragment extends Fragment implements Runnable{
     public String getDays(String borrowDate){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date now = new Date();
-        String now1 = formatter.format(now);
+        String now1 = formatter.format(now);//目前时间
         Long l = 0L;
         try {
             Date now2 = formatter.parse(now1);
             long back = now2.getTime();
-            Date b = formatter.parse(borrowDate);
+            Date b = formatter.parse(borrowDate);//借书时间
             long borrow = b.getTime();
             l = (borrow-back) / (1000*60*60*24);
+            Log.i("TAG", "getDays: "+l);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return String.valueOf(30+l.intValue());
+        if(30+l.intValue()<0){
+            return "逾期";
+        }else{
+            return String.valueOf(30+l.intValue());
+        }
+
     }
 
     public void returnBook(int lend_id){

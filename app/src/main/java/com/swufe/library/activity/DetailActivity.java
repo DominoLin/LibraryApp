@@ -13,9 +13,11 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.swufe.library.LogManager;
@@ -43,7 +45,8 @@ import okhttp3.Response;
 
 public class DetailActivity extends AppCompatActivity {
     String TAG = "DetailActivity";
-    TextView author, publish, pub_date, position, number, introduction;
+    TextView author, publish, pub_date, isbn, language, position, number, introduction;
+    ImageView imageView;
     Intent intent;
     SharedPreferences sharedPreferences;
     Book book;
@@ -57,6 +60,7 @@ public class DetailActivity extends AppCompatActivity {
 
         book = (Book) intent.getSerializableExtra("book");
 
+
         Toolbar toolbar = findViewById(R.id.detail_toolbar);
         toolbar.setTitle(book.getName());
         setSupportActionBar(toolbar);
@@ -66,9 +70,12 @@ public class DetailActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        imageView = findViewById(R.id.img_detail);
         author = findViewById(R.id.tv_detail_author);
         publish = findViewById(R.id.tv_detail_publish);
         pub_date = findViewById(R.id.tv_detail_pubDate);
+        isbn = findViewById(R.id.tv_detail_ISBN);
+        language = findViewById(R.id.tv_detail_language);
         position = findViewById(R.id.tv_detail_position);
         number = findViewById(R.id.tv_detail_number);
         introduction = findViewById(R.id.tv_detail_introduction);
@@ -76,11 +83,15 @@ public class DetailActivity extends AppCompatActivity {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-//        Log.i(TAG, "onCreate: "+simpleDateFormat.format(book.getPub_date()));
+
+        Glide.with(getApplicationContext()).load(URLs.picture+book.getISBN()+".jpg").into(imageView);
         author.setText(book.getAuthor());
         publish.setText(book.getPublish());
         pub_date.setText(simpleDateFormat.format(book.getPub_date()));
-        number.setText(String.valueOf(book.getNumber()));
+        isbn.setText(book.getISBN());
+        language.setText(book.getLanguage());
+        number.setText(String.valueOf(book.getNum()));
+        position.setText(book.getPosition());
         introduction.setText(book.getIntroduction());
     }
 

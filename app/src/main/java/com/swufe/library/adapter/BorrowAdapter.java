@@ -1,5 +1,6 @@
 package com.swufe.library.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,12 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         BorrowItem item = borrowItemList.get(position);
         holder.deadline.setText(item.getDeadline());
+        if(item.getDeadline().equals("逾期")){
+            holder.deadline.setTextColor(Color.parseColor("#DC143C"));
+        }
+        if(item.getDeadline().equals("已还")){
+            holder.deadline.setTextColor(Color.parseColor("#00CED1"));
+        }
         holder.book.setText(item.getBookName());
         holder.borrow.setText(item.getBorrow_date());
         holder.back.setText(item.getBack_date());

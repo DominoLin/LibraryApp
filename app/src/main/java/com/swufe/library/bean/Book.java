@@ -9,13 +9,31 @@ public class Book implements Serializable {
     private String name;
     private String author;
     private String publish;
-    private String ISBN;
+    private String isbn;
     private String introduction;
     private String language;
     private float price;
     private Date pub_date;
     private int class_id;
     private int number;
+    private int num;
+    private String position;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
     public int getBook_id() {
         return book_id;
@@ -50,11 +68,11 @@ public class Book implements Serializable {
     }
 
     public String getISBN() {
-        return ISBN;
+        return isbn;
     }
 
     public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+        this.isbn = ISBN;
     }
 
     public String getIntroduction() {
